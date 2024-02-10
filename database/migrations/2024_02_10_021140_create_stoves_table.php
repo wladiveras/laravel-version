@@ -13,6 +13,26 @@ return new class extends Migration
     {
         Schema::create('stoves', function (Blueprint $table) {
             $table->id();
+            $table->integer('burners');
+
+            $table->integer('lighters');
+            $table->string('lighters_colors');
+
+            $table->integer('oven');
+            $table->integer('oven_lamp');
+            $table->string('oven_lamp_color');
+            $table->string('oven_color');
+            $table->string('stove_color');
+
+            $table->string('stove_width');
+            $table->string('stove_heigh');
+            $table->string('stove_depth');
+
+            $table->integer('glass_width');
+            $table->integer('glass_heigth');
+            $table->integer('glass_length');
+
+            $table->string('brand');
             $table->timestamps();
         });
     }

@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('state_code');
+            $table->boolean('is_capital')->default(false);
             $table->timestamps();
         });
     }
