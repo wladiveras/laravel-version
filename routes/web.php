@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AddressController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,5 +13,3 @@ use App\Http\Controllers\AddressController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/address/{id}', [AddressController::class, 'show']);
