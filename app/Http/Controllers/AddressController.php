@@ -11,7 +11,7 @@ class AddressController extends Controller
 {
     public function index()
     {
-        $addresses = Address::all();
+        $addresses = Address::with('city', 'city.state')->get();
 
         if (!$addresses) {
             return parseResponse(
@@ -47,7 +47,7 @@ class AddressController extends Controller
         );
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'user_id' => 'required|integer',
@@ -113,7 +113,7 @@ class AddressController extends Controller
         );
     }
 
-    public function delete(int $id)
+    public function destroy(int $id)
     {
         $address = Address::where('id', $id);
 
