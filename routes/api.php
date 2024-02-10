@@ -20,4 +20,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/address/{id}', [AddressController::class, 'show']);
+Route::prefix('address')->controller(AddressController::class)->group(function () {
+    Route::get('/', 'index');
+    Route::get('/{id}', 'show');
+    Route::put('/{id}', 'update');
+    Route::post('/', 'create');
+    Route::delete('/', 'delete');
+});
