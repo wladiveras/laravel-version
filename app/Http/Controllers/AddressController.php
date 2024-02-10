@@ -7,12 +7,8 @@ use App\Models\Address;
 
 class AddressController extends Controller
 {
-    public function index(Request $request)
+    public function show(Request $request)
     {
-        $request->validate([
-            'id' => 'required',
-        ]);
-
-        return Address::with('city', 'city.state')->find($request->id);
+        return Address::with('city', 'city.state')->findOrFail($request->id);
     }
 }

@@ -14,4 +14,4 @@ use App\Http\Controllers\AddressController;
 |
 */
 
-Route::get('/address', [AddressController::class, 'index']);
+Route::get('/address/{id}', [AddressController::class, 'show']);
