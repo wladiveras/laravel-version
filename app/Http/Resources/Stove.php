@@ -14,7 +14,7 @@ class Stove extends JsonResource
             'name' => $this->name,
             'burners' => $this->burners,
             'lighters' => $this->lighters,
-            'lighters_colors' => $this->lighters_colors,
+            'lighters_colors' => unserialize($this->lighters_colors),
             'oven' => $this->oven,
             'oven_lamp' => $this->oven_lamp,
             'oven_lamp_color' => $this->oven_lamp_color,

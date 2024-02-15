@@ -89,7 +89,7 @@ class AddressController extends Controller
         }
 
         $address = $address->with('city', 'city.state')->first();
-        $address = new AddressCollection($address);
+        $address = new AddressResource($address);
 
         return parseResponse(
             result: $address,

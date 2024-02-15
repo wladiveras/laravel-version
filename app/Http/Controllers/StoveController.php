@@ -30,13 +30,13 @@ class StoveController extends Controller
         );
     }
 
-    public function show(string $code): JsonResponse
+    public function show(string $id): JsonResponse
     {
-        $stove = Stove::where('code', $code);
+        $stove = Stove::where('id', $id);
 
         if (!$stove->exists()) {
             return parseResponse(
-                errors: ["message" => "cannot find this stove, try a different code."],
+                errors: ["message" => "cannot find this stove, try a different id."],
                 code: 404,
             );
         }
@@ -59,7 +59,7 @@ class StoveController extends Controller
                 'lighters' => 'required|integer|min:4|max:10',
                 'oven' => 'required|integer|min:1|max:2',
                 'oven_lamp' => 'required|integer|min:1|max:10',
-                'lighters_colors' => 'required|min:4|max:10',
+                'lighters_colors' => 'required|array',
                 'oven_lamp_color' => 'required|max:255',
                 'oven_color' => 'required|max:255',
                 'stove_color' => 'required|max:255',
@@ -77,6 +77,8 @@ class StoveController extends Controller
                 code: 404,
             );
         }
+
+        $validated['lighters_colors'] = serialize($validated['lighters_colors']);
 
         $createStove = Stove::create($validated);
 
@@ -104,7 +106,7 @@ class StoveController extends Controller
                 'lighters' => 'integer|min:4|max:10',
                 'oven' => 'integer|min:1|max:2',
                 'oven_lamp' => 'integer|min:1|max:10',
-                'lighters_colors' => 'min:4|max:10',
+                'lighters_colors' => 'required|array',
                 'oven_lamp_color' => 'max:255',
                 'oven_color' => 'max:255',
                 'stove_color' => 'max:255',
@@ -132,6 +134,8 @@ class StoveController extends Controller
             );
         }
 
+        $validated['lighters_colors'] = serialize($validated['lighters_colors']);
+
         $updateStove = $stove->update($validated);
 
         if (!$updateStove) {
@@ -142,7 +146,7 @@ class StoveController extends Controller
         }
 
         $stove = $stove->first();
-        $stove = new StoveCollection($stove);
+        $stove = new StoveResource($stove);
 
         return parseResponse(
             result: $stove,
