@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\State as StateResource;
 use App\Http\Resources\StateCollection;
+use Illuminate\Http\JsonResponse;
 use App\Models\State;
 
 class StateController extends Controller
 {
 
-    public function index()
+    public function index(): JsonResponse
     {
         $state = State::all();
 
@@ -28,9 +29,8 @@ class StateController extends Controller
         );
     }
 
-    public function show(string $code)
+    public function show(string $code): JsonResponse
     {
-
         $state = State::where('code', $code);
 
         if (!$state->exists()) {

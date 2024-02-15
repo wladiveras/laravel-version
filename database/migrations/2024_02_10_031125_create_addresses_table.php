@@ -20,10 +20,11 @@ return new class extends Migration
             $table->string('neighbourhood');
             $table->string('country');
             $table->string('complement');
+            $table->string('postal_code');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('no action');
         });
     }
 

@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\City as CityResource;
 use App\Http\Resources\CityCollection;
+use Illuminate\Http\JsonResponse;
 use App\Models\City;
 
 class CityController extends Controller
 {
 
-    public function index()
+    public function index(): JsonResponse
     {
         $cities = City::with('state')->get();
 
@@ -28,7 +29,7 @@ class CityController extends Controller
         );
     }
 
-    public function show(string $id)
+    public function show(string $id): JsonResponse
     {
         $city = City::with('state')->where('id', $id);
 

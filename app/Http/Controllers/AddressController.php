@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\AddressCollection;
 use App\Http\Resources\Address as AddressResource;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\Address;
 
 class AddressController extends Controller
 {
-    public function index()
+    public function index(): JsonResponse
     {
         $addresses = Address::with('city', 'city.state')->get();
 
@@ -27,7 +29,8 @@ class AddressController extends Controller
             action: true,
         );
     }
-    public function show(int $id)
+
+    public function show(int $id): JsonResponse
     {
         $address = Address::with('city', 'city.state')->where('id', $id);
 
@@ -47,85 +50,49 @@ class AddressController extends Controller
         );
     }
 
-    public function store(Request $request)
+    public function update(int $id, Request $request): JsonResponse
     {
-        $request->validate([
-            'user_id' => 'required|integer',
-            'city_id' => 'required|integer',
-            'number' => 'required|string|max:255',
-            'street' => 'required|string|max:255',
-            'neighbourhood' => 'required|string|max:255',
-            'complement' => 'required|string|max:255',
-            'country' => 'required|string|max:255',
-        ]);
 
-        $createdAddress = Address::create($request->validated());
-
-        if (!$createdAddress) {
+        try {
+            $validated = $request->validate([
+                'city_id' => 'required|integer',
+                'number' => 'required|max:50',
+                'street' => 'required|string|max:255',
+                'neighbourhood' => 'required|string|max:255',
+                'country' => 'required|string|min:3|max:50',
+                'complement' => 'string|min:5|max:255',
+                'postal_code' => 'required|string|min:5|max:255',
+            ]);
+        } catch (ValidationException $e) {
             return parseResponse(
-                errors: ["message" => "cannot create a new address."],
+                errors: ["message" => $e->errors()],
                 code: 404,
             );
         }
 
-        return parseResponse(
-            result: $createdAddress,
-            action: true,
-        );
-    }
-
-
-    public function update(int $id, Request $request)
-    {
-        $request->validate([
-            'city_id' => 'integer',
-            'number' => 'string|max:100',
-            'street' => 'string|max:100',
-            'neighbourhood' => 'string|max:255',
-            'complement' => 'string|max:255',
-            'country' => 'string|max:50',
-        ]);
-
         $address = Address::with('city', 'city.state')->where('id', $id);
 
         if (!$address->exists()) {
+            return parseResponse(
+                errors: ["message" => "cannot find this user, try a different id."],
+                code: 404,
+            );
+        }
+
+        $updateAddress = $address->update($validated);
+
+        if (!$updateAddress) {
             return parseResponse(
                 errors: ["message" => "cannot find this address, try a different id."],
                 code: 404,
             );
         }
 
-        $updateAddress = $address->update($request->validated());
-
-        if (!$updateAddress) {
-            return parseResponse(
-                errors: ["message" => "cannot update address, try again later."],
-                code: 404,
-            );
-        }
-
-        $address = $address->first();
+        $address = $address->with('city', 'city.state')->first();
         $address = new AddressCollection($address);
 
         return parseResponse(
             result: $address,
-            action: true,
-        );
-    }
-
-    public function destroy(int $id)
-    {
-        $address = Address::where('id', $id);
-
-        if (!$address->exists()) {
-            return parseResponse(
-                errors: ["message" => "cannot delete this address, try a different id."],
-                code: 404,
-            );
-        }
-
-        return parseResponse(
-            result: $id,
             action: true,
         );
     }

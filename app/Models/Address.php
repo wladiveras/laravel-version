@@ -18,6 +18,7 @@ class Address extends Model
         'neighbourhood',
         'complement',
         'country',
+        'postal_code'
     ];
 
     public function city(): belongsTo

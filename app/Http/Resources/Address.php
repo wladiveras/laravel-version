@@ -4,10 +4,10 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\City;
 
 class Address extends JsonResource
 {
-
     public function toArray(Request $request): array
     {
         return [
@@ -19,7 +19,8 @@ class Address extends JsonResource
             'neighboorhood' => $this->neighboorhood,
             'country' => $this->country,
             'complement' => $this->complement,
-            'city' => $this->city
+            'postal_code' => $this->postal_code,
+            'city' => new City($this->city)
         ];
     }
 }

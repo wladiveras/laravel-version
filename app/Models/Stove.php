@@ -10,7 +10,6 @@ class Stove extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
         'burners',
         'lighters',
         'lighters_colors',

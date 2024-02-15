@@ -2,8 +2,10 @@
 
 namespace App\Exceptions;
 
+use App\helpers\parseResponse;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -23,8 +25,12 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        $this->renderable(function (NotFoundHttpException $e, Request $request) {
+
+            return parseResponse(
+                errors: ["message" => 'Record not found.'],
+                code: 404,
+            );
         });
     }
 }
