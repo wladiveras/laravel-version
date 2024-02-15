@@ -16,7 +16,7 @@ class Address extends JsonResource
             'city_id' => $this->city_id,
             'number' => (int) $this->number,
             'street' => $this->street,
-            'neighboorhood' => $this->neighboorhood,
+            'neighbourhood' => $this->neighbourhood,
             'country' => $this->country,
             'complement' => $this->complement,
             'postal_code' => $this->postal_code,

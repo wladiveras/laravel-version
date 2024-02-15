@@ -19,11 +19,11 @@ class Stove extends Model
         'oven_color',
         'stove_color',
         'stove_width',
-        'stove_heigh',
+        'stove_height',
         'stove_depth',
         'glass_width',
-        'glass_heigth',
-        'glass_length',
+        'glass_height',
+        'glass_lenght',
         'brand',
     ];
 }

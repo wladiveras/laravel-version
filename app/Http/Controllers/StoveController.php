@@ -64,11 +64,11 @@ class StoveController extends Controller
                 'oven_color' => 'required|max:255',
                 'stove_color' => 'required|max:255',
                 'stove_width' => 'required|max:255',
-                'stove_heigh' => 'required|max:255',
+                'stove_height' => 'required|max:255',
                 'stove_depth' => 'required|max:255',
                 'glass_width' => 'required|max:255',
-                'glass_heigth' => 'required|max:255',
-                'glass_length' => 'required|max:255',
+                'glass_height' => 'required|max:255',
+                'glass_lenght' => 'required|max:255',
                 'brand' => 'required|string|max:255',
             ]);
         } catch (ValidationException $e) {
@@ -111,11 +111,11 @@ class StoveController extends Controller
                 'oven_color' => 'max:255',
                 'stove_color' => 'max:255',
                 'stove_width' => 'max:255',
-                'stove_heigh' => 'max:255',
+                'stove_height' => 'max:255',
                 'stove_depth' => 'max:255',
                 'glass_width' => 'max:255',
-                'glass_heigth' => 'max:255',
-                'glass_length' => 'max:255',
+                'glass_height' => 'max:255',
+                'glass_lenght' => 'max:255',
                 'brand' => 'string|max:255',
             ]);
         } catch (ValidationException $e) {
@@ -133,6 +133,7 @@ class StoveController extends Controller
                 code: 404,
             );
         }
+
 
         $validated['lighters_colors'] = serialize($validated['lighters_colors']);
 

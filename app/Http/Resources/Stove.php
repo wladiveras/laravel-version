@@ -21,11 +21,11 @@ class Stove extends JsonResource
             'oven_color' => $this->oven_color,
             'stove_color' => $this->stove_color,
             'stove_width' => $this->stove_width,
-            'stove_heigh' => $this->stove_heigh,
+            'stove_height' => $this->stove_height,
             'stove_depth' => $this->stove_depth,
             'glass_width' => $this->glass_width,
-            'glass_heigth' => $this->glass_heigth,
-            'glass_length' => $this->glass_length,
+            'glass_height' => $this->glass_height,
+            'glass_lenght' => $this->glass_lenght,
             'brand' => $this->brand
         ];
     }

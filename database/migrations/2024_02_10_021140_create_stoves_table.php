@@ -25,12 +25,12 @@ return new class extends Migration
             $table->string('stove_color');
 
             $table->string('stove_width');
-            $table->string('stove_heigh');
+            $table->string('stove_height');
             $table->string('stove_depth');
 
             $table->integer('glass_width');
-            $table->integer('glass_heigth');
-            $table->integer('glass_length');
+            $table->integer('glass_height');
+            $table->integer('glass_lenght');
 
             $table->string('brand');
             $table->timestamps();

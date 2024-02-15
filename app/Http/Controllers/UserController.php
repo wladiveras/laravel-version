@@ -67,7 +67,7 @@ class UserController extends Controller
                 'address.street' => 'required|string|max:255',
                 'address.neighbourhood' => 'required|string|max:255',
                 'address.country' => 'required|string|min:3|max:50',
-                'address.complement' => 'string|min:5|max:255',
+                'address.complement' => '',
                 'address.postal_code' => 'required|string|min:5|max:255',
             ]);
         } catch (ValidationException $e) {

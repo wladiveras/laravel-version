@@ -27,12 +27,12 @@ class StoveSeeder extends Seeder
 
             'stove_color' => '#fff',
             'stove_width' => 45,
-            'stove_heigh' => 45,
+            'stove_height' => 45,
             'stove_depth' => 50,
 
             'glass_width' => 30,
-            'glass_heigth' => 35,
-            'glass_length' => 45,
+            'glass_height' => 35,
+            'glass_lenght' => 45,
 
             'brand' => 'apple'
         ]);
@@ -50,12 +50,12 @@ class StoveSeeder extends Seeder
 
             'stove_color' => '#000',
             'stove_width' => 65,
-            'stove_heigh' => 60,
+            'stove_height' => 60,
             'stove_depth' => 70,
 
             'glass_width' => 40,
-            'glass_heigth' => 50,
-            'glass_length' => 60,
+            'glass_height' => 50,
+            'glass_lenght' => 60,
 
             'brand' => 'apple'
         ]);
