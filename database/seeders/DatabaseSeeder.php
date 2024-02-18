@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             CitySeeder::class,
             StateSeeder::class,
             StoveSeeder::class,
+            UserSeeder::class
         ]);
     }
 }

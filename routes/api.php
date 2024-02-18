@@ -10,6 +10,7 @@ use App\Http\Controllers\StoveController;
 
 Route::prefix('/user')->controller(UserController::class)->group(function () {
     Route::post('/', 'store');
+    Route::post('/auth', 'auth');
     Route::get('/all', 'index');
     Route::get('/{id}', 'show');
     Route::put('/{id}', 'update');

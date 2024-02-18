@@ -53,6 +53,37 @@ class UserController extends Controller
         );
     }
 
+    public function auth(Request $request): JsonResponse
+    {
+        try {
+            $validated = $request->validate([
+                'email' => 'required|email',
+            ]);
+        } catch (ValidationException $e) {
+            return parseResponse(
+                errors: ["message" => $e->errors()],
+                code: 404,
+            );
+        }
+
+        $user = User::with('address')->where('email', $request->input('email'));
+
+        if (!$user->exists()) {
+            return parseResponse(
+                errors: ["message" => "Connot sign in with this email"],
+                code: 401,
+            );
+        }
+
+        $user = $user->first();
+        $user = new UserResource($user);
+
+        return parseResponse(
+            result: $user,
+            action: true,
+        );
+    }
+
     public function store(Request $request): JsonResponse
     {
 
