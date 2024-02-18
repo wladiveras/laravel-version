@@ -15,16 +15,19 @@ class StoveSeeder extends Seeder
         Stove::truncate();
 
         Stove::create([
-            'burners' => 5,
+            'burners' => 4,
 
             'lighters' => 5,
             'lighters_colors' => serialize(['#924A3B', '#3FB45F', '#1C5B2D', '#71527C', '#390318 ']),
 
+            'lamp_button' => 1,
+
             'oven' => 1,
             'oven_lamp' => 1,
+            
             'oven_lamp_color' => '#CFDC34',
             'oven_color' => '#fff',
-
+            
             'stove_color' => '#fff',
             'stove_width' => 45,
             'stove_height' => 45,
@@ -34,7 +37,7 @@ class StoveSeeder extends Seeder
             'glass_height' => 35,
             'glass_lenght' => 45,
 
-            'brand' => 'apple'
+            'brand' => 'samsung'
         ]);
 
         Stove::create([
@@ -42,9 +45,12 @@ class StoveSeeder extends Seeder
 
             'lighters' => 5,
             'lighters_colors' => serialize(['#924A3B', '#6D7325', '#1DF1E5', '#44D2C9', '#2B6F6B']),
-
+            
+            'lamp_button' => 1,
+            
             'oven' => 1,
             'oven_lamp' => 1,
+            
             'oven_lamp_color' => '#6D7325',
             'oven_color' => '#000',
 

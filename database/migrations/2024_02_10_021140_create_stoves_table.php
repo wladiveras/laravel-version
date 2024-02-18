@@ -17,13 +17,13 @@ return new class extends Migration
 
             $table->integer('lighters');
             $table->string('lighters_colors');
-
+            $table->integer('lamp_button');
             $table->integer('oven');
             $table->integer('oven_lamp');
             $table->string('oven_lamp_color');
             $table->string('oven_color');
             $table->string('stove_color');
-
+            
             $table->string('stove_width');
             $table->string('stove_height');
             $table->string('stove_depth');

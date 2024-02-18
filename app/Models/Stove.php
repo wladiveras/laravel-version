@@ -15,6 +15,7 @@ class Stove extends Model
         'lighters_colors',
         'oven',
         'oven_lamp',
+        'lamp_button',
         'oven_lamp_color',
         'oven_color',
         'stove_color',
